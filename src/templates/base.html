@@ -5,32 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SaaS</title>
 
-    <script
-      src="https://unpkg.com/htmx.org@1.9.3"
-      integrity="sha384-lVb3Rd/Ca0AxaoZg5sACe8FJKF0tnUgR2Kd7ehUOG5GCcROv5uBIZsOqovBAcWua"
-      crossorigin="anonymous"
-    ></script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
+    {% include "base/css.html" %}
+ 
   </head>
 
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
   class="">
+
+    {% include 'nav/navbar.html' %}
     {% block content %}
     {% endblock content %} 
      
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    {% include "base/js.html" %}
   
-    <script>
-      
-    </script>
   </body>
 </html>
