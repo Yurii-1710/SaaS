@@ -27,8 +27,6 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 
-print("DEBUG", DEBUG, type(DEBUG))
-
 ALLOWED_HOSTS = [
     ".railway.app"
 ]
@@ -55,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -150,8 +149,13 @@ STATICFILES_DIRS = [
     STATICFILES_BASE_DIR
 ]
 STATIC_ROOT = BASE_DIR.joinpath("local-cdn")
-# if not DEBUG:
-#     STATIC_ROOT = BASE_DIR / "prod-cdn"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
